@@ -1,0 +1,45 @@
+<view class="page-container">
+  <!-- 顶部区域 -->
+  <view class="top-banner">
+    <view class="banner-content">
+      <view class="app-title">
+        PetCare
+        <text class="rating">☆5.0</text>
+      </view>
+      <view class="user-info" wx:if="{{hasUserInfo}}">
+        <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+        <text class="nickname">{{userInfo.nickName}}</text>
+      </view>
+      <button wx:else class="login-btn" bindtap="getUserProfile">登录</button>
+    </view>
+  </view>
+
+  <!-- 服务区域 -->
+  <view class="service-row">
+    <view class="service-box" wx:for="{{services}}" wx:key="type" bindtap="handleBookService" data-type="{{item.type}}">
+      <text class="emoji">{{item.emoji}}</text>
+      <text class="service-title">{{item.title}}</text>
+      <text class="service-price">¥{{item.price}}</text>
+      <button class="book-btn">预订</button>
+    </view>
+  </view>
+
+  <!-- 统计数据 -->
+  <view class="stats">
+    <text class="desc">已累计服务宠物</text>
+    <text class="number">{{stats.petCount}}</text>
+    <text class="desc">截止{{stats.updateTime}}</text>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="features">
+    <view class="feature-box" 
+          wx:for="{{features}}" 
+          wx:key="title"
+          bindtap="handleFeatureClick"
+          data-index="{{index}}">
+      <text class="feature-icon">{{item.icon}}</text>
+      <text class="feature-title">{{item.title}}</text>
+    </view>
+  </view>
+</view>
